@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+  <title>HER MOODS 🤍</title>
+
+  <!-- Google Fonts (NO sans-serif) -->
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700&family=Pacifico&family=Chewy&display=swap" rel="stylesheet">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+
+  <!-- ================= CINEMATIC INTRO ================= -->
+  <section id="intro-screen" class="intro-screen">
+    <div class="intro-content">
+      <p class="intro-line line-1">I made this space for you.</p>
+      <p class="intro-line line-2">Take what you need.</p>
+    </div>
+  </section>
+
+  <!-- ================= HOME / MOOD SELECTION ================= -->
+  <section id="home-screen" class="screen active">
+    <div class="container">
+
+      <h1 class="title">Hi sya</h1>
+      <p class="subtitle">how are you feeling right now?</p>
+
+      <div class="mood-grid">
+
+        <button class="mood-btn" data-mood="happy">
+          <span class="label">happy</span>
+        </button>
+
+        <button class="mood-btn" data-mood="sad">
+          <span class="label">sad</span>
+        </button>
+
+        <button class="mood-btn" data-mood="angry">
+          <span class="label">angry</span>
+        </button>
+
+        <button class="mood-btn" data-mood="lonely">
+          <span class="label">lonely</span>
+        </button>
+
+        <button class="mood-btn" data-mood="laugh">
+          <span class="label">make me laugh</span>
+        </button>
+
+        <button class="mood-btn" data-mood="confidence">
+          <span class="label">boost my confidence</span>
+        </button>
+
+        <button class="mood-btn" data-mood="tired">
+          <span class="label">tired</span>
+        </button>
+
+        <!-- DATE IDEAS BUTTON (NOT a mood) -->
+        <button class="date-btn" id="date-ideas-btn">
+          <span class="label">our date ideas</span>
+        </button>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= MESSAGE / LETTER SCREEN ================= -->
+  <section id="message-screen" class="screen">
+    <div class="container">
+
+      <div class="top-bar">
+        <span class="brand">bubu’s mood jar</span>
+      </div>
+
+      <div class="letter-wrapper">
+
+        <div class="envelope" id="envelope">
+          <div class="letter">
+            <p class="message-text"></p>
+          </div>
+        </div>
+
+        <p class="tap-hint">tap the letter</p>
+      </div>
+
+      <div class="actions">
+        <button class="action-btn primary">another letter</button>
+        <button class="action-btn secondary">back to moods</button>
+        <button class="action-btn tertiary" id="music-btn">
+          play something soft
+        </button>
+      </div>
+
+      <p class="footer">
+        made with love, only for sya
+      </p>
+
+    </div>
+  </section>
+
+  <!-- ================= DATE IDEAS SCREEN ================= -->
+  <section id="date-screen" class="screen">
+    <div class="container">
+
+      <div class="top-bar">
+        <span class="brand">our date ideas</span>
+      </div>
+
+      <div class="date-card">
+        <ul id="date-list"></ul>
+      </div>
+
+      <div class="date-input">
+        <input
+          type="text"
+          id="date-input"
+          placeholder="add a new date idea..."
+        />
+        <button id="add-date-btn">add</button>
+      </div>
+
+      <div class="actions">
+        <button class="action-btn secondary" id="back-to-moods">
+          back
+        </button>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- JavaScript -->
+  <script src="script.js"></script>
+
+</body>
+</html>
