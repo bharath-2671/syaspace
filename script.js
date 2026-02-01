@@ -1,6 +1,6 @@
 /* ================= FIREBASE INIT ================= */
 
- const firebaseConfig = {
+const firebaseConfig = {
   apiKey: "AIzaSyC3ykPbK1B0kFzx3LT5tF7YuAHFbnFDHDU",
   authDomain: "syaspace-e1482.firebaseapp.com",
   projectId: "syaspace-e1482",
@@ -109,60 +109,18 @@ async function loadTasks() {
 
 /* ================= LOGIN & USER STATE ================= */
 
-let currentUser = null; 
-// "queen" or "king"
+let currentUser = "queen";
+// "queen" (default)
 
-const loginScreen = document.getElementById("login-screen");
-const passkeyInput = document.getElementById("passkey-input");
-const loginBtn = document.getElementById("login-btn");
 const uploadControls = document.getElementById("upload-controls");
 
 const nav = document.getElementById("app-nav");
 const plannerTab = document.getElementById("planner-tab");
-loginBtn.addEventListener("click", handleLogin);
-passkeyInput.addEventListener("keypress", (e) => {
-  if (e.key === "Enter") handleLogin();
-});
 
+// Initialize View for Queen
+plannerTab.style.display = "inline-block";
+uploadControls.style.display = "block";
 
-
-
-function handleLogin() {
-  const key = passkeyInput.value.trim();
-
-  if (key === "Queen") {
-    currentUser = "queen";
-  } 
-  else if (key === "King") {
-    currentUser = "king";
-  } 
-  else {
-    alert("wrong passkey 🤍");
-    return;
-  }
-
-  enterApp();
-}
-function enterApp() {
-  // hide login
-  loginScreen.classList.remove("active");
-
-  // show home
-  homeScreen.classList.add("active");
-
-  // show nav
-  nav.classList.remove("hidden");
-
-  if (currentUser === "king") {
-    plannerTab.style.display = "none";      // hide planner
-    uploadControls.style.display = "none";  // hide uploads
-  }
-
-  if (currentUser === "queen") {
-    plannerTab.style.display = "inline-block";
-    uploadControls.style.display = "block"; // show uploads
-  }
-}
 
 /* ================= NAVIGATION ================= */
 

@@ -1,44 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <title>SYA SPACE 🤍</title>
 
   <!-- Google Fonts (NO sans-serif) -->
-  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700&family=Pacifico&family=Chewy&display=swap" rel="stylesheet">
-<!-- Firebase SDK -->
-<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-storage-compat.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700&family=Pacifico&family=Chewy&display=swap"
+    rel="stylesheet">
+  <!-- Firebase SDK -->
+  <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-storage-compat.js"></script>
 
   <!-- CSS -->
   <link rel="stylesheet" href="style.css" />
 </head>
 
 <body>
-  <!-- ================= LOGIN SCREEN ================= -->
-<section id="login-screen" class="screen active">
-  <div class="container">
-    <h1 class="title">welcome 🤍</h1>
-    <p class="subtitle">enter your passkey</p>
-
-    <input
-      type="password"
-      id="passkey-input"
-      placeholder="type your secret word..."
-      class="login-input"
-    />
-
-    <button id="login-btn" class="action-btn primary">
-      enter
-    </button>
-
-    <p class="footer">this space is just for us</p>
-  </div>
-</section>
-
   <!-- ================= CINEMATIC INTRO ================= -->
   <section id="intro-screen" class="intro-screen">
     <div class="intro-content">
@@ -46,13 +27,13 @@
       <p class="intro-line line-2">Take what you need.</p>
     </div>
   </section>
-<!-- ================= NAVIGATION ================= -->
-<nav id="app-nav" class="app-nav hidden">
-  <button data-screen="home-screen">moods</button>
-  <button data-screen="planner-screen" id="planner-tab">planner</button>
-  <button data-screen="date-screen">dates</button>
-  <button data-screen="gallery-screen">gallery</button>
-</nav>
+  <!-- ================= NAVIGATION ================= -->
+  <nav id="app-nav" class="app-nav">
+    <button data-screen="home-screen">moods</button>
+    <button data-screen="planner-screen" id="planner-tab">planner</button>
+    <button data-screen="date-screen">dates</button>
+    <button data-screen="gallery-screen">gallery</button>
+  </nav>
 
   <!-- ================= HOME / MOOD SELECTION ================= -->
   <section id="home-screen" class="screen active">
@@ -147,11 +128,7 @@
       </div>
 
       <div class="date-input">
-        <input
-          type="text"
-          id="date-input"
-          placeholder="add a new date idea..."
-        />
+        <input type="text" id="date-input" placeholder="add a new date idea..." />
         <button id="add-date-btn">add</button>
       </div>
 
@@ -163,67 +140,64 @@
 
     </div>
   </section>
-<!-- ================= DAILY PLANNER ================= -->
-<section id="planner-screen" class="screen">
-  <div class="container planner-layout">
+  <!-- ================= DAILY PLANNER ================= -->
+  <section id="planner-screen" class="screen">
+    <div class="container planner-layout">
 
-    <!-- LEFT: CALENDAR -->
-    <div class="calendar-box">
-      <div class="calendar-header">
-        <button id="prev-month">‹</button>
-        <span id="calendar-title"></span>
-        <button id="next-month">›</button>
+      <!-- LEFT: CALENDAR -->
+      <div class="calendar-box">
+        <div class="calendar-header">
+          <button id="prev-month">‹</button>
+          <span id="calendar-title"></span>
+          <button id="next-month">›</button>
+        </div>
+
+        <div class="calendar-grid" id="calendar-grid"></div>
       </div>
 
-      <div class="calendar-grid" id="calendar-grid"></div>
-    </div>
+      <!-- RIGHT: TASKS -->
+      <div class="tasks-box">
+        <h3 id="selected-date-title">Select a date</h3>
 
-    <!-- RIGHT: TASKS -->
-    <div class="tasks-box">
-      <h3 id="selected-date-title">Select a date</h3>
+        <ul id="task-list"></ul>
 
-      <ul id="task-list"></ul>
+        <div class="task-input soft-card">
+          <input type="text" id="task-input" placeholder="add a task.." />
+          <button id="add-task-btn">＋</button>
+        </div>
 
-      <div class="task-input soft-card">
-  <input
-    type="text"
-    id="task-input"
-    placeholder="add a task.."
-  />
-  <button id="add-task-btn">＋</button>
-</div>
-
-    </div>
-
-  </div>
-</section>
-
-<!-- ================= ART GALLERY ================= -->
-<section id="gallery-screen" class="screen">
-  <div class="container">
-    <div class="top-bar">
-      <span class="brand">our gallery 🎨</span>
-    </div>
-
-    <!-- UPLOAD CONTROLS (HER ONLY) -->
-    <div id="upload-controls" class="upload-card">
-      <div class="upload-inputs">
-        <input type="file" id="art-upload" accept="image/*" class="file-input" />
-        <input type="text" id="art-name" placeholder="give it a name..." class="text-input" />
       </div>
-      <button id="upload-art" class="action-btn primary upload-btn">
-        upload art
-      </button>
-    </div>
 
-    <!-- GALLERY -->
-    <div id="gallery-grid" class="gallery-grid"></div>
-  </div>
-</section>
+    </div>
+  </section>
+
+  <!-- ================= ART GALLERY ================= -->
+  <section id="gallery-screen" class="screen">
+    <div class="container">
+      <div class="top-bar">
+        <span class="brand">our gallery 🎨</span>
+      </div>
+
+      <!-- UPLOAD CONTROLS (HER ONLY) -->
+      <div id="upload-controls" class="upload-card">
+        <div class="upload-inputs">
+          <input type="file" id="art-upload" accept="image/*" class="file-input" />
+          <input type="text" id="art-name" placeholder="give it a name..." class="text-input" />
+        </div>
+        <button id="upload-art" class="action-btn primary upload-btn">
+          upload art
+        </button>
+      </div>
+
+      <!-- GALLERY -->
+      <div id="gallery-grid" class="gallery-grid"></div>
+    </div>
+  </section>
 
 
   <!-- JavaScript -->
   <script src="script.js"></script>
 
 </body>
+
 </html>
