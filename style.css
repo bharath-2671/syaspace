@@ -116,8 +116,7 @@ body.mood-tired {
   gap: 18px;
 }
 
-.mood-btn,
-.date-btn {
+.mood-btn {
   font-family: 'Baloo 2', cursive;
   background: linear-gradient(135deg, #ffffff, #ffe5f0);
   border: none;
@@ -131,11 +130,26 @@ body.mood-tired {
   transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 
+.mood-btn:hover {
+  transform: translateY(-7px) scale(1.05);
+  box-shadow: 0 26px 44px rgba(255, 120, 170, 0.45);
+}
+
 .date-btn {
+  font-family: 'Baloo 2', cursive;
+  background: linear-gradient(135deg, #ffffff, #ffe5f0);
+  border: none;
+  border-radius: 34px;
+  padding: 22px 10px;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #7a3446;
+  cursor: pointer;
+  box-shadow: 0 18px 34px rgba(255, 140, 180, 0.35);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
   width: 100%;
 }
 
-.mood-btn:hover,
 .date-btn:hover {
   transform: translateY(-7px) scale(1.05);
   box-shadow: 0 26px 44px rgba(255, 120, 170, 0.45);
@@ -210,6 +224,13 @@ body.mood-tired {
   margin-bottom: 18px;
 }
 
+.signature {
+  font-family: 'Baloo 2', cursive;
+  font-size: 0.95rem;
+  color: #c46b85;
+  text-align: right;
+}
+
 /* TAP HINT */
 .tap-hint {
   font-family: 'Baloo 2', cursive;
@@ -282,6 +303,7 @@ body.mood-tired {
     font-size: 2.4rem;
   }
 }
+
 /* ================= NIGHT MODE ================= */
 body.night-mode {
   filter: brightness(0.88) saturate(0.85);
@@ -305,12 +327,11 @@ body.night-mode .tap-hint,
 body.night-mode .footer {
   opacity: 0.7;
 }
-.signature {
-  display: none !important;
-}
+
 body {
   -webkit-tap-highlight-color: transparent;
 }
+
 /* ================= CINEMATIC INTRO ================= */
 .intro-screen {
   position: fixed;
@@ -354,6 +375,7 @@ body {
     transform: translateY(0);
   }
 }
+
 /* ================= DATE IDEAS ================= */
 .date-card {
   background: #fff8fb;
@@ -443,6 +465,7 @@ body {
   font-family: 'Baloo 2', cursive;
   cursor: pointer;
 }
+
 /* ================= NAV ================= */
 .app-nav {
   position: fixed;
@@ -499,8 +522,6 @@ textarea {
   margin-top: 8px;
   font-family: 'Baloo 2', cursive;
 }
-
-/* ================= GALLERY ================= */
 
 /* ================= PLANNER LAYOUT ================= */
 .planner-layout {
@@ -586,7 +607,6 @@ textarea {
 }
 
 /* ================= ADD TASK AESTHETIC ================= */
-
 .soft-card {
   background: linear-gradient(135deg, #fff6fa, #ffe9f1);
   border-radius: 18px;
@@ -632,23 +652,8 @@ textarea {
 #add-task-btn:hover {
   transform: scale(1.08);
 }
+
 /* ================= GALLERY ================= */
-
-.gallery-upload {
-  display: flex;
-  gap: 8px;
-  justify-content: center;
-  margin-bottom: 20px;
-  flex-wrap: wrap;
-}
-
-.gallery-upload input {
-  padding: 8px;
-  border-radius: 12px;
-  border: none;
-  font-family: 'Baloo 2', cursive;
-}
-
 .gallery-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
@@ -748,8 +753,8 @@ textarea {
   transform: translateY(-4px);
   box-shadow: 0 16px 32px rgba(255, 120, 170, 0.45);
 }
-/* ================= LOGOUT BUTTON ================= */
 
+/* ================= LOGOUT BUTTON ================= */
 .logout-btn {
   position: fixed;
   top: 16px;
@@ -781,44 +786,8 @@ textarea {
 .logout-btn.hidden {
   display: none;
 }
-/* ================= MEMORY SEARCH ================= */
 
-.memory-search {
-  width: 100%;
-  padding: 12px 16px;
-  border-radius: 20px;
-  border: none;
-  margin-bottom: 18px;
 
-  font-family: 'Baloo 2', cursive;
-  font-size: 0.85rem;
-  background: #fff;
-  box-shadow: 0 10px 24px rgba(255,140,180,0.25);
-  outline: none;
-}
 
-/* ================= MONTH GROUP ================= */
 
-.month-group {
-  margin-bottom: 28px;
-}
 
-.month-title {
-  font-size: 0.9rem;
-  font-weight: 700;
-  color: #8b4a5a;
-  margin-bottom: 10px;
-  opacity: 0.9;
-  position: sticky;
-  top: 56px;
-  background: linear-gradient(135deg, #ffe0ec, #fff7fb);
-  padding: 6px 8px;
-  border-radius: 10px;
-  z-index: 5;
-}
-
-.month-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-  gap: 16px;
-}
