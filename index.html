@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+  <title>HER MOODS 🤍</title>
+
+  <!-- Google Fonts (NO sans-serif) -->
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700&family=Pacifico&family=Chewy&display=swap" rel="stylesheet">
+<!-- Firebase SDK -->
+<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-storage-compat.js"></script>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+  <!-- ================= LOGIN SCREEN ================= -->
+<section id="login-screen" class="screen active">
+  <div class="container">
+    <h1 class="title">welcome 🤍</h1>
+    <p class="subtitle">enter your passkey</p>
+
+    <input
+      type="password"
+      id="passkey-input"
+      placeholder="type your secret word..."
+      class="login-input"
+    />
+
+    <button id="login-btn" class="action-btn primary">
+      enter
+    </button>
+
+    <p class="footer">this space is just for us</p>
+  </div>
+</section>
+
+  <!-- ================= CINEMATIC INTRO ================= -->
+  <section id="intro-screen" class="intro-screen">
+    <div class="intro-content">
+      <p class="intro-line line-1">I made this space for you.</p>
+      <p class="intro-line line-2">Take what you need.</p>
+    </div>
+  </section>
+<!-- ================= NAVIGATION ================= -->
+<nav id="app-nav" class="app-nav hidden">
+  <button data-screen="home-screen">moods</button>
+  <button data-screen="planner-screen" id="planner-tab">planner</button>
+  <button data-screen="date-screen">dates</button>
+  <button data-screen="gallery-screen">gallery</button>
+</nav>
+
+  <!-- ================= HOME / MOOD SELECTION ================= -->
+  <section id="home-screen" class="screen active">
+    <div class="container">
+
+      <h1 class="title">Hi sya</h1>
+      <p class="subtitle">how are you feeling right now?</p>
+
+      <div class="mood-grid">
+
+        <button class="mood-btn" data-mood="happy">
+          <span class="label">happy</span>
+        </button>
+
+        <button class="mood-btn" data-mood="sad">
+          <span class="label">sad</span>
+        </button>
+
+        <button class="mood-btn" data-mood="angry">
+          <span class="label">angry</span>
+        </button>
+
+        <button class="mood-btn" data-mood="lonely">
+          <span class="label">lonely</span>
+        </button>
+
+        <button class="mood-btn" data-mood="laugh">
+          <span class="label">make me laugh</span>
+        </button>
+
+        <button class="mood-btn" data-mood="confidence">
+          <span class="label">boost my confidence</span>
+        </button>
+
+        <button class="mood-btn" data-mood="tired">
+          <span class="label">tired</span>
+        </button>
+
+        <!-- DATE IDEAS BUTTON (NOT a mood) -->
+        <button class="date-btn" id="date-ideas-btn">
+          <span class="label">our date ideas</span>
+        </button>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= MESSAGE / LETTER SCREEN ================= -->
+  <section id="message-screen" class="screen">
+    <div class="container">
+
+      <div class="top-bar">
+        <span class="brand">bubu’s mood jar</span>
+      </div>
+
+      <div class="letter-wrapper">
+
+        <div class="envelope" id="envelope">
+          <div class="letter">
+            <p class="message-text"></p>
+          </div>
+        </div>
+
+        <p class="tap-hint">tap the letter</p>
+      </div>
+
+      <div class="actions">
+        <button class="action-btn primary">another letter</button>
+        <button class="action-btn secondary">back to moods</button>
+        <button class="action-btn tertiary" id="music-btn">
+          play something soft
+        </button>
+      </div>
+
+      <p class="footer">
+        made with love, only for sya
+      </p>
+
+    </div>
+  </section>
+
+  <!-- ================= DATE IDEAS SCREEN ================= -->
+  <section id="date-screen" class="screen">
+    <div class="container">
+
+      <div class="top-bar">
+        <span class="brand">our date ideas</span>
+      </div>
+
+      <div class="date-card">
+        <ul id="date-list"></ul>
+      </div>
+
+      <div class="date-input">
+        <input
+          type="text"
+          id="date-input"
+          placeholder="add a new date idea..."
+        />
+        <button id="add-date-btn">add</button>
+      </div>
+
+      <div class="actions">
+        <button class="action-btn secondary" id="back-to-moods">
+          back
+        </button>
+      </div>
+
+    </div>
+  </section>
+<!-- ================= DAILY PLANNER ================= -->
+<section id="planner-screen" class="screen">
+  <div class="container planner-layout">
+
+    <!-- LEFT: CALENDAR -->
+    <div class="calendar-box">
+      <div class="calendar-header">
+        <button id="prev-month">‹</button>
+        <span id="calendar-title"></span>
+        <button id="next-month">›</button>
+      </div>
+
+      <div class="calendar-grid" id="calendar-grid"></div>
+    </div>
+
+    <!-- RIGHT: TASKS -->
+    <div class="tasks-box">
+      <h3 id="selected-date-title">Select a date</h3>
+
+      <ul id="task-list"></ul>
+
+      <div class="task-input soft-card">
+  <input
+    type="text"
+    id="task-input"
+    placeholder="add a task.."
+  />
+  <button id="add-task-btn">＋</button>
+</div>
+
+    </div>
+
+  </div>
+</section>
+
+<!-- ================= ART GALLERY ================= -->
+<section id="gallery-screen" class="screen">
+  <div class="container">
+    <div class="top-bar">
+      <span class="brand">our gallery 🎨</span>
+    </div>
+
+    <!-- UPLOAD CONTROLS (HER ONLY) -->
+    <div id="upload-controls" class="upload-card">
+      <div class="upload-inputs">
+        <input type="file" id="art-upload" accept="image/*" class="file-input" />
+        <input type="text" id="art-name" placeholder="give it a name..." class="text-input" />
+      </div>
+      <button id="upload-art" class="action-btn primary upload-btn">
+        upload art
+      </button>
+    </div>
+
+    <!-- GALLERY -->
+     <input
+  type="text"
+  id="memory-search"
+  placeholder="search a memory..."
+  class="memory-search"
+/>
+
+    <div id="gallery-grid" class="gallery-grid"></div>
+  </div>
+</section>
+
+
+  <!-- JavaScript -->
+  <script src="script.js"></script>
+
+</body>
+</html>
