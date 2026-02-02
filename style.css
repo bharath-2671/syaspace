@@ -782,3 +782,32 @@ textarea {
 .logout-btn.hidden {
   display: none;
 }
+
+.login-input {
+  padding: 12px 16px;
+  border-radius: 18px;
+  border: none;
+  font-family: 'Baloo 2', cursive;
+  font-size: 0.9rem;
+  width: 100%;
+  margin: 16px 0;
+  text-align: center;
+}
+
+.logout-btn {
+  position: fixed;
+  top: 16px;
+  right: 18px;
+  z-index: 2000;
+
+  background: rgba(255,255,255,0.75);
+  backdrop-filter: blur(6px);
+  border: none;
+  border-radius: 18px;
+  padding: 6px 14px;
+
+  font-family: 'Baloo 2', cursive;
+  font-size: 0.75rem;
+  font-weight: 700;
+  cursor: pointer;
+}

@@ -10,6 +10,15 @@ const firebaseConfig = {
 };
 
 firebase.initializeApp(firebaseConfig);
+const PASSWORD = "gummybears"; // change this
+
+const loginScreen = document.getElementById("login-screen");
+const homeScreen = document.getElementById("home-screen");
+const introScreen = document.getElementById("intro-screen");
+
+const loginBtn = document.getElementById("login-btn");
+const passwordInput = document.getElementById("password-input");
+const logoutBtn = document.getElementById("logout-btn");
 
 const db = firebase.firestore();
 const storage = firebase.storage();
@@ -149,16 +158,45 @@ function showScreen(screenId) {
 
 
 /* ================= ELEMENTS ================= */
-const introScreen = document.getElementById("intro-screen");
 let pendingMessage = "";
 
 window.addEventListener("load", () => {
-  setTimeout(() => {
+  const isLoggedIn = localStorage.getItem("isLoggedIn");
+  const introSeen = localStorage.getItem("introSeen");
+
+  // Ensure nav is hidden by default on load; we'll reveal it only after login
+  const appNav = document.getElementById("app-nav");
+  if (appNav) appNav.classList.add("hidden");
+  if (logoutBtn) logoutBtn.classList.add("hidden");
+
+  // If already logged in → skip everything
+  if (isLoggedIn === "true") {
     introScreen.classList.add("hidden");
-  }, 4000); // intro duration
+    showHomeScreen();
+    return;
+  }
+
+  // If intro not seen → play once
+  if (!introSeen) {
+    setTimeout(() => {
+      introScreen.classList.add("hidden");
+      localStorage.setItem("introSeen", "true");
+      loginScreen.classList.add("active");
+      // keep nav hidden while on login
+      if (appNav) appNav.classList.add("hidden");
+      if (logoutBtn) logoutBtn.classList.add("hidden");
+    }, 4000);
+  } else {
+    // Intro already seen → go directly to login
+    introScreen.classList.add("hidden");
+    loginScreen.classList.add("active");
+    // keep nav hidden while on login
+    if (appNav) appNav.classList.add("hidden");
+    if (logoutBtn) logoutBtn.classList.add("hidden");
+  }
 });
 
-const homeScreen = document.getElementById("home-screen");
+
 const messageScreen = document.getElementById("message-screen");
 
 const moodButtons = document.querySelectorAll(".mood-btn");
@@ -847,17 +885,28 @@ function showMessageScreen(mood) {
 }
 
 function showHomeScreen() {
+  // 🔐 LOGIN / ACCESS CONTROL
+  loginScreen.classList.remove("active");
+
+  // 🧭 SHOW NAV + LOGOUT (THIS IS THE FIX)
+  const nav = document.getElementById("app-nav");
+  nav.classList.remove("hidden");
+  logoutBtn.classList.remove("hidden");
+
+  // 🏠 SHOW HOME
   messageScreen.classList.remove("active");
   homeScreen.classList.add("active");
 
+  // 🔄 RESET MOOD / MESSAGE STATE
   document.body.className = "";
   currentMood = null;
 
-  // 🔥 RESET everything
   pendingMessage = "";
   messageText.textContent = "";
   envelope.classList.remove("open");
 }
+
+
 
 
 /* ================= MESSAGE LOGIC ================= */
@@ -920,7 +969,7 @@ anotherBtn.addEventListener("click", () => {
   updateMessage();
 });
 
-backBtn.addEventListener("click", showHomeScreen);
+backBtn.addEventListener("click", showHomeScreen());
 
 musicBtn.addEventListener("click", () => {
   if (!currentMood || !music[currentMood]) return;
@@ -993,7 +1042,7 @@ dateBtn.addEventListener("click", () => {
   renderDates();
 });
 
-backToModesBtn.addEventListener("click", showHomeScreen);
+backToModesBtn.addEventListener("click", showHomeScreen());
 
 addDateBtn.addEventListener("click", () => {
   const newIdea = dateInput.value.trim();
@@ -1173,6 +1222,39 @@ uploadArtBtn.addEventListener("click", async () => {
 
 /* INIT */
 renderGallery();
+loginBtn.addEventListener("click", () => {
+  if (passwordInput.value === PASSWORD) {
+    localStorage.setItem("isLoggedIn", "true");
+    showHomeScreen();
+  } else {
+    alert("wrong password 🤍");
+  }
+});
+logoutBtn.addEventListener("click", () => {
+  localStorage.removeItem("isLoggedIn");
+
+  document.getElementById("app-nav").classList.add("hidden");
+  logoutBtn.classList.add("hidden");
+
+  location.reload();
+});
+
+
+function showHomeScreen() {
+  loginScreen.classList.remove("active");
+
+  // show navigation and logout (hidden on login page)
+  document.getElementById("app-nav").classList.remove("hidden");
+  homeScreen.classList.add("active");
+  logoutBtn.classList.remove("hidden");
+
+  // reset mood / message state
+  document.body.className = "";
+  currentMood = null;
+  pendingMessage = "";
+  if (messageText) messageText.textContent = "";
+  if (envelope) envelope.classList.remove("open");
+}
 
 
 

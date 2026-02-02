@@ -28,6 +28,29 @@
 </head>
 
 <body>
+  <button id="logout-btn" class="logout-btn hidden">
+  logout
+</button>
+
+<!-- ================= LOGIN SCREEN ================= -->
+<section id="login-screen" class="screen">
+  <div class="container">
+    <h1 class="title">welcome 🤍</h1>
+    <p class="subtitle">enter the password</p>
+
+    <input
+      type="password"
+      id="password-input"
+      placeholder="password..."
+      class="login-input"
+    />
+
+    <button id="login-btn" class="action-btn primary">
+      enter
+    </button>
+  </div>
+</section>
+
   <!-- ================= CINEMATIC INTRO ================= -->
   <section id="intro-screen" class="intro-screen">
     <div class="intro-content">
@@ -36,7 +59,8 @@
     </div>
   </section>
   <!-- ================= NAVIGATION ================= -->
-  <nav id="app-nav" class="app-nav">
+  <nav id="app-nav" class="app-nav hidden">
+
     <button data-screen="home-screen">moods</button>
     <button data-screen="planner-screen" id="planner-tab">planner</button>
     <button data-screen="date-screen">dates</button>
@@ -44,7 +68,7 @@
   </nav>
 
   <!-- ================= HOME / MOOD SELECTION ================= -->
-  <section id="home-screen" class="screen active">
+  <section id="home-screen" class="screen">
     <div class="container">
 
       <h1 class="title">Hi sya</h1>
